@@ -1,0 +1,4 @@
+/workspaces/MyTapGameServer/app/.cxx/Debug/466uj5o4/arm64-v8a/CMakeFiles/tap_starter.dir
+/workspaces/MyTapGameServer/app/.cxx/Debug/466uj5o4/arm64-v8a/CMakeFiles/wifi_pairing.dir
+/workspaces/MyTapGameServer/app/.cxx/Debug/466uj5o4/arm64-v8a/CMakeFiles/edit_cache.dir
+/workspaces/MyTapGameServer/app/.cxx/Debug/466uj5o4/arm64-v8a/CMakeFiles/rebuild_cache.dir

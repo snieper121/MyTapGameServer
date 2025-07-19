@@ -1,0 +1,87 @@
+CMake Deprecation Warning at /home/codespace/android-sdk/ndk/27.0.12077973/build/cmake/android.toolchain.cmake:35 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+Call Stack (most recent call first):
+  /home/codespace/android-sdk/cmake/4.0.2/share/cmake-4.0/Modules/CMakeDetermineSystem.cmake:146 (include)
+  CMakeLists.txt:2 (project)
+
+
+CMake Deprecation Warning at /home/codespace/android-sdk/ndk/27.0.12077973/build/cmake/android-legacy.toolchain.cmake:35 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+Call Stack (most recent call first):
+  /home/codespace/android-sdk/ndk/27.0.12077973/build/cmake/android.toolchain.cmake:55 (include)
+  /home/codespace/android-sdk/cmake/4.0.2/share/cmake-4.0/Modules/CMakeDetermineSystem.cmake:146 (include)
+  CMakeLists.txt:2 (project)
+
+
+CMake Deprecation Warning at /home/codespace/android-sdk/ndk/27.0.12077973/build/cmake/android.toolchain.cmake:35 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+Call Stack (most recent call first):
+  /workspaces/MyTapGameServer/app/.cxx/Debug/3hc4a4b5/armeabi-v7a/CMakeFiles/4.0.2/CMakeSystem.cmake:6 (include)
+  CMakeLists.txt:2 (project)
+
+
+CMake Deprecation Warning at /home/codespace/android-sdk/ndk/27.0.12077973/build/cmake/android.toolchain.cmake:35 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+Call Stack (most recent call first):
+  /workspaces/MyTapGameServer/app/.cxx/Debug/3hc4a4b5/armeabi-v7a/CMakeFiles/4.0.2/CMakeSystem.cmake:6 (include)
+  /workspaces/MyTapGameServer/app/.cxx/Debug/3hc4a4b5/armeabi-v7a/CMakeFiles/CMakeScratch/TryCompile-hWaiGM/CMakeLists.txt:4 (project)
+
+
+CMake Deprecation Warning at /home/codespace/android-sdk/ndk/27.0.12077973/build/cmake/android-legacy.toolchain.cmake:35 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+Call Stack (most recent call first):
+  /home/codespace/android-sdk/ndk/27.0.12077973/build/cmake/android.toolchain.cmake:55 (include)
+  /workspaces/MyTapGameServer/app/.cxx/Debug/3hc4a4b5/armeabi-v7a/CMakeFiles/4.0.2/CMakeSystem.cmake:6 (include)
+  /workspaces/MyTapGameServer/app/.cxx/Debug/3hc4a4b5/armeabi-v7a/CMakeFiles/CMakeScratch/TryCompile-hWaiGM/CMakeLists.txt:4 (project)
+
+
+CMake Deprecation Warning at /home/codespace/android-sdk/ndk/27.0.12077973/build/cmake/android.toolchain.cmake:35 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+Call Stack (most recent call first):
+  /workspaces/MyTapGameServer/app/.cxx/Debug/3hc4a4b5/armeabi-v7a/CMakeFiles/4.0.2/CMakeSystem.cmake:6 (include)
+  /workspaces/MyTapGameServer/app/.cxx/Debug/3hc4a4b5/armeabi-v7a/CMakeFiles/CMakeScratch/TryCompile-vTCCqN/CMakeLists.txt:4 (project)
+
+
+CMake Deprecation Warning at /home/codespace/android-sdk/ndk/27.0.12077973/build/cmake/android-legacy.toolchain.cmake:35 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+Call Stack (most recent call first):
+  /home/codespace/android-sdk/ndk/27.0.12077973/build/cmake/android.toolchain.cmake:55 (include)
+  /workspaces/MyTapGameServer/app/.cxx/Debug/3hc4a4b5/armeabi-v7a/CMakeFiles/4.0.2/CMakeSystem.cmake:6 (include)
+  /workspaces/MyTapGameServer/app/.cxx/Debug/3hc4a4b5/armeabi-v7a/CMakeFiles/CMakeScratch/TryCompile-vTCCqN/CMakeLists.txt:4 (project)
+
+

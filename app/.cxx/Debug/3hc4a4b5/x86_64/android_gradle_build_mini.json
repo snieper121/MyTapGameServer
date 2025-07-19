@@ -1,0 +1,27 @@
+{
+  "buildFiles": [
+    "/workspaces/MyTapGameServer/app/src/main/cpp/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/home/codespace/android-sdk/cmake/4.0.2/bin/ninja",
+      "-C",
+      "/workspaces/MyTapGameServer/app/.cxx/Debug/3hc4a4b5/x86_64",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/home/codespace/android-sdk/cmake/4.0.2/bin/ninja",
+    "-C",
+    "/workspaces/MyTapGameServer/app/.cxx/Debug/3hc4a4b5/x86_64",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {
+    "tap_starter::@6890427a1f51a3e7e1df": {
+      "artifactName": "tap_starter",
+      "abi": "x86_64",
+      "output": "/workspaces/MyTapGameServer/app/build/intermediates/cxx/Debug/3hc4a4b5/obj/x86_64/tap_starter",
+      "runtimeFiles": []
+    }
+  }
+}

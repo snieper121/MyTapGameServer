@@ -1,0 +1,7 @@
+# ninja log v6
+12	260	1752963592976940090	CMakeFiles/tap_starter.dir/android.cpp.o	3d3e0ab777e9c49
+10	271	1752963592974940090	CMakeFiles/tap_starter.dir/selinux.cpp.o	5e6779b1975812c6
+12	276	1752963592976940090	CMakeFiles/tap_starter.dir/cgroup.cpp.o	fe9dc489d32b3571
+4	312	1752963592968940090	CMakeFiles/tap_starter.dir/misc.cpp.o	f36412a7b4a84fbc
+1	789	1752963592965940091	CMakeFiles/tap_starter.dir/starter.cpp.o	7152be7e8f3c1185
+799	852	1752963593763940037	/workspaces/MyTapGameServer/app/build/intermediates/cxx/Debug/3hc4a4b5/obj/armeabi-v7a/tap_starter	4f7343e86d045d00

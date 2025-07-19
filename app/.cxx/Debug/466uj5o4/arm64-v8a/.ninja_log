@@ -1,0 +1,16 @@
+# ninja log v6
+1	3	1752962379795021426	clean	4b5bc4e85969a3c
+3	37	1752962380741021362	/workspaces/MyTapGameServer/app/.cxx/Debug/466uj5o4/arm64-v8a/cmake_install.cmake	af4735c34aef5ef7
+3	37	1752962380742021362	build.ninja	af4735c34aef5ef7
+1	1485	1752962271223028705	CMakeFiles/tap_starter.dir/starter.cpp.o	5adf2a6103576542
+340	490	1752962271562028682	CMakeFiles/wifi_pairing.dir/misc.cpp.o	2b14d51a448f509d
+5	340	1752962271227028704	CMakeFiles/tap_starter.dir/android.cpp.o	b6e429065ee1e511
+3	457	1752962271225028704	CMakeFiles/tap_starter.dir/selinux.cpp.o	f492339237584dc
+2	501	1752962271224028705	CMakeFiles/tap_starter.dir/misc.cpp.o	dc8dc97c00b493d7
+4	386	1752962271226028704	CMakeFiles/tap_starter.dir/cgroup.cpp.o	e6806b45189d5ef3
+29	213	1752962380976021346	CMakeFiles/tap_starter.dir/android.cpp.o	b6e429065ee1e511
+23	237	1752962380970021347	CMakeFiles/tap_starter.dir/cgroup.cpp.o	e6806b45189d5ef3
+22	247	1752962380969021347	CMakeFiles/tap_starter.dir/selinux.cpp.o	f492339237584dc
+20	267	1752962380967021347	CMakeFiles/tap_starter.dir/misc.cpp.o	dc8dc97c00b493d7
+213	339	1752962381160021334	CMakeFiles/wifi_pairing.dir/misc.cpp.o	2b14d51a448f509d
+18	898	1752962380965021347	CMakeFiles/tap_starter.dir/starter.cpp.o	5adf2a6103576542

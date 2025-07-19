@@ -12,15 +12,7 @@ android {
         targetSdk 36
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
-        externalNativeBuild {
-            cmake {
-                // Передаем в CMake путь к NDK. Используем двойные кавычки.
-                arguments "-DANDROID_NDK=${System.getenv("ANDROID_HOME")}/ndk/27.0.12077973"
-            }
-        }
     }
 
     buildTypes {
@@ -30,19 +22,26 @@ android {
         }
     }
 
-    // Включаем поддержку синтаксиса Java 8
+    // --- УСТАНАВЛИВАЕМ ПРАВИЛЬНУЮ ВЕРСИЮ JAVA ---
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_21
         targetCompatibility JavaVersion.VERSION_21
     }
 
-    // Указываем путь к файлу CMakeLists.txt
+    // --- УБИРАЕМ ЗАВИСИМОСТЬ ОТ PREFAB, ТАК КАК МЫ ОТКЛЮЧИЛИ BORINGSSL ---
+    buildFeatures {
+        prefab false
+    }
+    
     externalNativeBuild {
         cmake {
             path "src/main/cpp/CMakeLists.txt"
             version "4.0.2"
         }
     }
+    
+    // Возвращаем современную версию NDK
+    ndkVersion "27.0.12077973"
 }
 
 dependencies {
@@ -52,7 +51,5 @@ dependencies {
     testImplementation "junit:junit:4.13.2"
     androidTestImplementation "androidx.test.ext:junit:1.1.5"
     androidTestImplementation "androidx.test.espresso:espresso-core:3.5.1"
-
-    // Зависимость для запуска сервера
     implementation("com.github.topjohnwu.libsu:core:5.2.2")
 }

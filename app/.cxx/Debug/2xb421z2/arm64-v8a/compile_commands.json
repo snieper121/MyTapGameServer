@@ -1,0 +1,44 @@
+[
+{
+  "directory": "/workspaces/MyTapGameServer/app/.cxx/Debug/2xb421z2/arm64-v8a",
+  "command": "/home/codespace/android-sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ --target=aarch64-none-linux-android26 --sysroot=/home/codespace/android-sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -fno-limit-debug-info  -std=gnu++17 -fPIE -Werror=format -fdata-sections -ffunction-sections -fno-exceptions -fno-rtti -fno-threadsafe-statics -o CMakeFiles/tap_starter.dir/starter.cpp.o -c /workspaces/MyTapGameServer/app/src/main/cpp/starter.cpp",
+  "file": "/workspaces/MyTapGameServer/app/src/main/cpp/starter.cpp",
+  "output": "CMakeFiles/tap_starter.dir/starter.cpp.o"
+},
+{
+  "directory": "/workspaces/MyTapGameServer/app/.cxx/Debug/2xb421z2/arm64-v8a",
+  "command": "/home/codespace/android-sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ --target=aarch64-none-linux-android26 --sysroot=/home/codespace/android-sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -fno-limit-debug-info  -std=gnu++17 -fPIE -Werror=format -fdata-sections -ffunction-sections -fno-exceptions -fno-rtti -fno-threadsafe-statics -o CMakeFiles/tap_starter.dir/misc.cpp.o -c /workspaces/MyTapGameServer/app/src/main/cpp/misc.cpp",
+  "file": "/workspaces/MyTapGameServer/app/src/main/cpp/misc.cpp",
+  "output": "CMakeFiles/tap_starter.dir/misc.cpp.o"
+},
+{
+  "directory": "/workspaces/MyTapGameServer/app/.cxx/Debug/2xb421z2/arm64-v8a",
+  "command": "/home/codespace/android-sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ --target=aarch64-none-linux-android26 --sysroot=/home/codespace/android-sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -fno-limit-debug-info  -std=gnu++17 -fPIE -Werror=format -fdata-sections -ffunction-sections -fno-exceptions -fno-rtti -fno-threadsafe-statics -o CMakeFiles/tap_starter.dir/selinux.cpp.o -c /workspaces/MyTapGameServer/app/src/main/cpp/selinux.cpp",
+  "file": "/workspaces/MyTapGameServer/app/src/main/cpp/selinux.cpp",
+  "output": "CMakeFiles/tap_starter.dir/selinux.cpp.o"
+},
+{
+  "directory": "/workspaces/MyTapGameServer/app/.cxx/Debug/2xb421z2/arm64-v8a",
+  "command": "/home/codespace/android-sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ --target=aarch64-none-linux-android26 --sysroot=/home/codespace/android-sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -fno-limit-debug-info  -std=gnu++17 -fPIE -Werror=format -fdata-sections -ffunction-sections -fno-exceptions -fno-rtti -fno-threadsafe-statics -o CMakeFiles/tap_starter.dir/cgroup.cpp.o -c /workspaces/MyTapGameServer/app/src/main/cpp/cgroup.cpp",
+  "file": "/workspaces/MyTapGameServer/app/src/main/cpp/cgroup.cpp",
+  "output": "CMakeFiles/tap_starter.dir/cgroup.cpp.o"
+},
+{
+  "directory": "/workspaces/MyTapGameServer/app/.cxx/Debug/2xb421z2/arm64-v8a",
+  "command": "/home/codespace/android-sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ --target=aarch64-none-linux-android26 --sysroot=/home/codespace/android-sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -fno-limit-debug-info  -std=gnu++17 -fPIE -Werror=format -fdata-sections -ffunction-sections -fno-exceptions -fno-rtti -fno-threadsafe-statics -o CMakeFiles/tap_starter.dir/android.cpp.o -c /workspaces/MyTapGameServer/app/src/main/cpp/android.cpp",
+  "file": "/workspaces/MyTapGameServer/app/src/main/cpp/android.cpp",
+  "output": "CMakeFiles/tap_starter.dir/android.cpp.o"
+},
+{
+  "directory": "/workspaces/MyTapGameServer/app/.cxx/Debug/2xb421z2/arm64-v8a",
+  "command": "/home/codespace/android-sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ --target=aarch64-none-linux-android26 --sysroot=/home/codespace/android-sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot -Dwifi_pairing_EXPORTS -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -fno-limit-debug-info  -std=gnu++17 -fPIC -Werror=format -fdata-sections -ffunction-sections -fno-exceptions -fno-rtti -fno-threadsafe-statics -o CMakeFiles/wifi_pairing.dir/adb_pairing.cpp.o -c /workspaces/MyTapGameServer/app/src/main/cpp/adb_pairing.cpp",
+  "file": "/workspaces/MyTapGameServer/app/src/main/cpp/adb_pairing.cpp",
+  "output": "CMakeFiles/wifi_pairing.dir/adb_pairing.cpp.o"
+},
+{
+  "directory": "/workspaces/MyTapGameServer/app/.cxx/Debug/2xb421z2/arm64-v8a",
+  "command": "/home/codespace/android-sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ --target=aarch64-none-linux-android26 --sysroot=/home/codespace/android-sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot -Dwifi_pairing_EXPORTS -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -fno-limit-debug-info  -std=gnu++17 -fPIC -Werror=format -fdata-sections -ffunction-sections -fno-exceptions -fno-rtti -fno-threadsafe-statics -o CMakeFiles/wifi_pairing.dir/misc.cpp.o -c /workspaces/MyTapGameServer/app/src/main/cpp/misc.cpp",
+  "file": "/workspaces/MyTapGameServer/app/src/main/cpp/misc.cpp",
+  "output": "CMakeFiles/wifi_pairing.dir/misc.cpp.o"
+}
+]

@@ -65,14 +65,15 @@ public class ClientManager<ConfigMgr extends ConfigManager> {
             clientRecord.allowed = true;
         }
         IBinder binder = client.asBinder();
-        IBinder.DeathRecipient deathRecipient = new IBinder.DeathRecipient() { 
-            @Override 
-            public void binderDied() { 
-                clientRecords.remove(clientRecord); 
-            } 
-        }; 
+        IBinder.DeathRecipient deathRecipient = new IBinder.DeathRecipient() {
+            @Override
+            public void binderDied() {
+                clientRecords.remove(clientRecord);
+            }
+        };
+        // В нашей заглушке linkToDeath не выбрасывает исключение, поэтому try-catch не нужен
         binder.linkToDeath(deathRecipient, 0);
-        }
+        
         clientRecords.add(clientRecord);
         return clientRecord;
     }

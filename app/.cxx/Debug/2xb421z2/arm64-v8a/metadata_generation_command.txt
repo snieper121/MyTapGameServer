@@ -1,0 +1,19 @@
+                        -H/workspaces/MyTapGameServer/app/src/main/cpp
+-DCMAKE_SYSTEM_NAME=Android
+-DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+-DCMAKE_SYSTEM_VERSION=26
+-DANDROID_PLATFORM=android-26
+-DANDROID_ABI=arm64-v8a
+-DCMAKE_ANDROID_ARCH_ABI=arm64-v8a
+-DANDROID_NDK=/home/codespace/android-sdk/ndk/26.1.10909125
+-DCMAKE_ANDROID_NDK=/home/codespace/android-sdk/ndk/26.1.10909125
+-DCMAKE_TOOLCHAIN_FILE=/home/codespace/android-sdk/ndk/26.1.10909125/build/cmake/android.toolchain.cmake
+-DCMAKE_MAKE_PROGRAM=/home/codespace/android-sdk/cmake/4.0.2/bin/ninja
+-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=/workspaces/MyTapGameServer/app/build/intermediates/cxx/Debug/2xb421z2/obj/arm64-v8a
+-DCMAKE_RUNTIME_OUTPUT_DIRECTORY=/workspaces/MyTapGameServer/app/build/intermediates/cxx/Debug/2xb421z2/obj/arm64-v8a
+-DCMAKE_BUILD_TYPE=Debug
+-DCMAKE_FIND_ROOT_PATH=/workspaces/MyTapGameServer/app/.cxx/Debug/2xb421z2/prefab/arm64-v8a/prefab
+-B/workspaces/MyTapGameServer/app/.cxx/Debug/2xb421z2/arm64-v8a
+-GNinja
+                        Build command args: []
+                        Version: 2

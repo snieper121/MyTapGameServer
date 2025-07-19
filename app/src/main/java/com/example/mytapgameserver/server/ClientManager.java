@@ -2,18 +2,14 @@ package com.example.mytapgameserver.server;
 
 import android.os.IBinder;
 import android.os.RemoteException;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import com.example.mytapgameserver.server.IShizukuApplication;
 import com.example.mytapgameserver.server.util.ServerLog;
 
 public class ClientManager<ConfigMgr extends ConfigManager> {
 
     protected static final ServerLog LOGGER = new ServerLog("UserServiceRecord");
-
     private final ConfigMgr configManager;
     private final List<ClientRecord> clientRecords = Collections.synchronizedList(new ArrayList<>());
 
@@ -64,24 +60,20 @@ public class ClientManager<ConfigMgr extends ConfigManager> {
 
     public ClientRecord addClient(int uid, int pid, IShizukuApplication client, String packageName, int apiVersion) {
         ClientRecord clientRecord = new ClientRecord(uid, pid, client, packageName, apiVersion);
-
         ConfigPackageEntry entry = configManager.find(uid);
         if (entry != null && entry.isAllowed()) {
             clientRecord.allowed = true;
         }
-
         IBinder binder = client.asBinder();
-        IBinder.DeathRecipient deathRecipient = () -> clientRecords.remove(clientRecord);
-        try {
-            binder.linkToDeath(deathRecipient, 0);
-        } catch (RemoteException e) {
-            LOGGER.w(e, "addClient: linkToDeath failed");
-            return null;
+        IBinder.DeathRecipient deathRecipient = new IBinder.DeathRecipient() { 
+            @Override 
+            public void binderDied() { 
+                clientRecords.remove(clientRecord); 
+            } 
+        }; 
+        binder.linkToDeath(deathRecipient, 0);
         }
-
         clientRecords.add(clientRecord);
         return clientRecord;
     }
 }
-
-

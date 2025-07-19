@@ -1,15 +1,10 @@
 package com.example.mytapgameserver.server;
 
-import static rikka.shizuku.ShizukuApiConstants.USER_SERVICE_TRANSACTION_destroy;
-
 import android.os.Binder;
 import android.os.IBinder;
 import android.os.Parcel;
 import android.os.RemoteCallbackList;
-
 import java.util.UUID;
-
-import com.example.mytapgameserver.server.IShizukuServiceConnection;
 import com.example.mytapgameserver.server.util.HandlerUtil;
 import com.example.mytapgameserver.server.util.ServerLog;
 
@@ -18,20 +13,17 @@ public abstract class UserServiceRecord {
     private Runnable startTimeoutCallback;
 
     private class ConnectionList extends RemoteCallbackList<IShizukuServiceConnection> {
-
         @Override
         public void onCallbackDied(IShizukuServiceConnection callback) {
             if (daemon || getRegisteredCallbackCount() != 0) {
                 return;
             }
-
             LOGGER.v("Remove service record %s since it does not run as a daemon and all connections are gone", token);
             removeSelf();
         }
     }
 
     protected static final ServerLog LOGGER = new ServerLog("UserServiceRecord");
-
     private final IBinder.DeathRecipient deathRecipient;
     public final int versionCode;
     public String token;
@@ -43,9 +35,12 @@ public abstract class UserServiceRecord {
     public UserServiceRecord(int versionCode, boolean daemon) {
         this.versionCode = versionCode;
         this.token = UUID.randomUUID().toString() + "-" + System.currentTimeMillis();
-        this.deathRecipient = () -> {
-            LOGGER.v("Binder for service record %s is dead", token);
-            removeSelf();
+        this.deathRecipient = new IBinder.DeathRecipient() {
+            @Override
+            public void binderDied() {
+                LOGGER.v("Binder for service record %s is dead", token);
+                removeSelf();
+            }
         };
         this.daemon = daemon;
     }
@@ -55,14 +50,15 @@ public abstract class UserServiceRecord {
             LOGGER.w("Service record %s is already starting", token);
             return;
         }
-
         LOGGER.v("Set starting timeout for service record %s: %d", token, timeoutMillis);
-
         starting = true;
-        startTimeoutCallback = () -> {
-            if (starting) {
-                LOGGER.w("Service record %s is not started in %d ms", token, timeoutMillis);
-                removeSelf();
+        startTimeoutCallback = new Runnable() {
+            @Override
+            public void run() {
+                if (starting) {
+                    LOGGER.w("Service record %s is not started in %d ms", token, timeoutMillis);
+                    removeSelf();
+                }
             }
         };
         HandlerUtil.getMainHandler().postDelayed(startTimeoutCallback, timeoutMillis);
@@ -74,23 +70,18 @@ public abstract class UserServiceRecord {
 
     public void setBinder(IBinder binder) {
         LOGGER.v("Binder received for service record %s", token);
-
         HandlerUtil.getMainHandler().removeCallbacks(startTimeoutCallback);
-
         service = binder;
-
         try {
             binder.linkToDeath(deathRecipient, 0);
         } catch (Throwable tr) {
             LOGGER.w("linkToDeath %s", token);
         }
-
         broadcastBinderReceived();
     }
 
     public void broadcastBinderReceived() {
         LOGGER.v("Broadcast binder received for service record %s", token);
-
         int count = callbacks.beginBroadcast();
         for (int i = 0; i < count; i++) {
             try {
@@ -104,7 +95,6 @@ public abstract class UserServiceRecord {
 
     public void broadcastBinderDied() {
         LOGGER.v("Broadcast binder died for service record %s", token);
-
         int count = callbacks.beginBroadcast();
         for (int i = 0; i < count; i++) {
             try {
@@ -122,13 +112,12 @@ public abstract class UserServiceRecord {
         if (service != null) {
             service.unlinkToDeath(deathRecipient, 0);
         }
-
         if (service != null && service.pingBinder()) {
             Parcel data = Parcel.obtain();
             Parcel reply = Parcel.obtain();
             try {
                 data.writeInterfaceToken(service.getInterfaceDescriptor());
-                service.transact(USER_SERVICE_TRANSACTION_destroy, data, reply, Binder.FLAG_ONEWAY);
+                service.transact(1598968902, data, reply, 1); // USER_SERVICE_TRANSACTION_destroy, FLAG_ONEWAY
             } catch (Throwable e) {
                 LOGGER.w("Failed to call destroy %s", token);
             } finally {
@@ -136,7 +125,6 @@ public abstract class UserServiceRecord {
                 reply.recycle();
             }
         }
-
         callbacks.kill();
     }
 }

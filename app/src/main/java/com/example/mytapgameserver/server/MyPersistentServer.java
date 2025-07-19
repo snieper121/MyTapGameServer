@@ -5,8 +5,8 @@ import android.os.Looper;
 import java.util.concurrent.CountDownLatch;
 
 // Правильно импортируем наш же ServerLog
-import com.example.mytapgameserver.server.ServerLog;
-import com.example.mytapgameserver.server.OsUtils;
+import com.example.mytapgameserver.server.util.ServerLog;
+import com.example.mytapgameserver.server.util.OsUtils;
 
 public class MyPersistentServer {
     public static void main(String[] args) {

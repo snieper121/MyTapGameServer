@@ -10,7 +10,7 @@ import java.util.logging.SimpleFormatter;
 public class ServerLog {
 
     private final String tag;
-    private final java.util.logging.ServerLog LOGGER;
+    private final java.util.logging.Logger LOGGER;
 
     public ServerLog(String tag) {
         this.tag = tag;
@@ -19,7 +19,7 @@ public class ServerLog {
 
     public ServerLog(String tag, String file) {
         this.tag = tag;
-        this.LOGGER = java.util.logging.ServerLog.getServerLog(tag);
+        this.LOGGER = java.util.logging.Logger.getLogger(tag);
         try {
             FileHandler fh = new FileHandler(file);
             fh.setFormatter(new SimpleFormatter());

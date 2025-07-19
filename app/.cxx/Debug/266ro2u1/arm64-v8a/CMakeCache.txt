@@ -266,6 +266,9 @@ MyTapGameServer_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 MyTapGameServer_SOURCE_DIR:STATIC=/workspaces/MyTapGameServer/app/src/main/cpp
 
+//The directory containing a CMake configuration file for boringssl.
+boringssl_DIR:PATH=boringssl_DIR-NOTFOUND
+
 //Path to a library.
 log-lib:FILEPATH=/home/codespace/android-sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/26/liblog.so
 

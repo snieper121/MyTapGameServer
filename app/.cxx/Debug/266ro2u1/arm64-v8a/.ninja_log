@@ -1,2 +1,8 @@
 # ninja log v6
 50	53	1752943584220572633	clean	4b5bc4e85969a3c
+67	70	1752954359554559129	clean	4b5bc4e85969a3c
+20	8512	1752954366835558641	CMakeFiles/tap_starter.dir/selinux.cpp.o	f492339237584dc
+25	8513	1752954366840558641	CMakeFiles/tap_starter.dir/android.cpp.o	b6e429065ee1e511
+24	8517	1752954366839558641	CMakeFiles/tap_starter.dir/cgroup.cpp.o	e6806b45189d5ef3
+18	8524	1752954366833558641	CMakeFiles/tap_starter.dir/misc.cpp.o	dc8dc97c00b493d7
+17	10065	1752954366832558641	CMakeFiles/tap_starter.dir/starter.cpp.o	5adf2a6103576542

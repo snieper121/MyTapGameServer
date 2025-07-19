@@ -1,37 +1,35 @@
-package com.example.mytapgameserver.server.api;
+package com.example.mytapgameserver.server;
 
 import android.os.IBinder;
 import android.os.ParcelFileDescriptor;
 import android.os.RemoteException;
-
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
-
-import com.example.mytapgameserver.server.IRemoteProcess;
 import com.example.mytapgameserver.server.util.ServerLog;
 import com.example.mytapgameserver.server.util.ParcelFileDescriptorUtil;
 
-public class RemoteProcessHolder implements IRemoteProcess {
+public class RemoteProcessHolder implements IRemoteProcess, IBinder {
 
     private static final ServerLog LOGGER = new ServerLog("RemoteProcessHolder");
-
     private final Process process;
     private ParcelFileDescriptor in;
     private ParcelFileDescriptor out;
 
     public RemoteProcessHolder(Process process, IBinder token) {
         this.process = process;
-
         if (token != null) {
             try {
-                DeathRecipient deathRecipient = () -> {
-                    try {
-                        if (alive()) {
-                            destroy();
-                            LOGGER.i("destroy process because the owner is dead");
+                IBinder.DeathRecipient deathRecipient = new IBinder.DeathRecipient() {
+                    @Override
+                    public void binderDied() {
+                        try {
+                            if (alive()) {
+                                destroy();
+                                LOGGER.i("destroy process because the owner is dead");
+                            }
+                        } catch (Throwable e) {
+                            LOGGER.w(e, "failed to destroy process");
                         }
-                    } catch (Throwable e) {
-                        LOGGER.w(e, "failed to destroy process");
                     }
                 };
                 token.linkToDeath(deathRecipient, 0);
@@ -39,6 +37,11 @@ public class RemoteProcessHolder implements IRemoteProcess {
                 LOGGER.w(e, "linkToDeath");
             }
         }
+    }
+
+    @Override
+    public IBinder asBinder() {
+        return this;
     }
 
     public ParcelFileDescriptor getOutputStream() {
@@ -97,26 +100,27 @@ public class RemoteProcessHolder implements IRemoteProcess {
     }
 
     public boolean waitForTimeout(long timeout, String unitName) throws RemoteException {
-        TimeUnit unit = TimeUnit.valueOf(unitName);
-        long startTime = System.nanoTime();
-        long rem = unit.toNanos(timeout);
-
-        do {
-            try {
-                exitValue();
-                return true;
-            } catch (IllegalThreadStateException ex) {
-                if (rem > 0) {
-                    try {
-                        Thread.sleep(
-                                Math.min(TimeUnit.NANOSECONDS.toMillis(rem) + 1, 100));
-                    } catch (InterruptedException e) {
-                        throw new IllegalStateException();
-                    }
-                }
-            }
-            rem = unit.toNanos(timeout) - (System.nanoTime() - startTime);
-        } while (rem > 0);
-        return false;
+        try {
+            return process.waitFor(timeout, TimeUnit.valueOf(unitName));
+        } catch (InterruptedException e) {
+            throw new IllegalStateException(e);
+        }
     }
+
+    // --- Реализация методов IBinder ---
+
+    @Override
+    public boolean pingBinder() { return true; }
+
+    @Override
+    public String getInterfaceDescriptor() { return null; }
+
+    @Override
+    public void linkToDeath(DeathRecipient recipient, int flags) {}
+
+    @Override
+    public void unlinkToDeath(DeathRecipient recipient, int flags) {}
+
+    @Override
+    public boolean transact(int code, android.os.Parcel data, android.os.Parcel reply, int flags) { return false; }
 }

@@ -8,15 +8,12 @@ import android.os.RemoteException;
 import android.os.SELinux;
 import android.os.SystemProperties;
 import android.system.Os;
-
 import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
-
 import com.example.mytapgameserver.server.IRemoteProcess;
 import com.example.mytapgameserver.server.IShizukuApplication;
 import com.example.mytapgameserver.server.IShizukuService;
@@ -25,7 +22,7 @@ import rikka.hidden.compat.PermissionManagerApis;
 import rikka.rish.RishConfig;
 import rikka.rish.RishService;
 import rikka.shizuku.ShizukuApiConstants;
-import com.example.mytapgameserver.server.api.RemoteProcessHolder;
+import com.example.mytapgameserver.server.RemoteProcessHolder;
 import com.example.mytapgameserver.server.util.ServerLog;
 import com.example.mytapgameserver.server.util.OsUtils;
 import com.example.mytapgameserver.server.util.UserHandleCompat;
@@ -44,12 +41,10 @@ public abstract class Service<
 
     public Service() {
         RishConfig.init(ShizukuApiConstants.BINDER_DESCRIPTOR, 30000);
-
         userServiceManager = onCreateUserServiceManager();
         configManager = onCreateConfigManager();
         clientManager = onCreateClientManager();
         rishService = new RishService() {
-
             public void enforceCallingPermission(String func) {
                 Service.this.enforceCallingPermission(func);
             }
@@ -57,76 +52,41 @@ public abstract class Service<
     }
 
     public abstract UserServiceMgr onCreateUserServiceManager();
-
     public abstract ClientMgr onCreateClientManager();
-
     public abstract ConfigMgr onCreateConfigManager();
+    public void attachApplication(IShizukuApplication application, Bundle args) {}
 
-    public final UserServiceMgr getUserServiceManager() {
-        return userServiceManager;
-    }
+    public final UserServiceMgr getUserServiceManager() { return userServiceManager; }
+    public final ClientMgr getClientManager() { return clientManager; }
+    public ConfigMgr getConfigManager() { return configManager; }
 
-    public final ClientMgr getClientManager() {
-        return clientManager;
-    }
-
-    public ConfigMgr getConfigManager() {
-        return configManager;
-    }
-
-    public boolean checkCallerManagerPermission(String func, int callingUid, int callingPid) {
-        return false;
-    }
+    public boolean checkCallerManagerPermission(String func, int callingUid, int callingPid) { return false; }
 
     public final void enforceManagerPermission(String func) {
         int callingUid = Binder.getCallingUid();
         int callingPid = Binder.getCallingPid();
-
-        if (callingPid == Os.getpid()) {
-            return;
-        }
-
-        if (checkCallerManagerPermission(func, callingUid, callingPid)) {
-            return;
-        }
-
-        String msg = "Permission Denial: " + func + " from pid="
-                + Binder.getCallingPid()
-                + " is not manager ";
+        if (callingPid == Os.getpid()) { return; }
+        if (checkCallerManagerPermission(func, callingUid, callingPid)) { return; }
+        String msg = "Permission Denial: " + func + " from pid=" + Binder.getCallingPid() + " is not manager ";
         LOGGER.w(msg);
         throw new SecurityException(msg);
     }
 
-    public boolean checkCallerPermission(String func, int callingUid, int callingPid, @Nullable ClientRecord clientRecord) {
-        return false;
-    }
+    public boolean checkCallerPermission(String func, int callingUid, int callingPid, @Nullable ClientRecord clientRecord) { return false; }
 
     public final void enforceCallingPermission(String func) {
         int callingUid = Binder.getCallingUid();
         int callingPid = Binder.getCallingPid();
-
-        if (callingUid == OsUtils.getUid()) {
-            return;
-        }
-
+        if (callingUid == OsUtils.getUid()) { return; }
         ClientRecord clientRecord = clientManager.findClient(callingUid, callingPid);
-
-        if (checkCallerPermission(func, callingUid, callingPid, clientRecord)) {
-            return;
-        }
-
+        if (checkCallerPermission(func, callingUid, callingPid, clientRecord)) { return; }
         if (clientRecord == null) {
-            String msg = "Permission Denial: " + func + " from pid="
-                    + Binder.getCallingPid()
-                    + " is not an attached client";
+            String msg = "Permission Denial: " + func + " from pid=" + Binder.getCallingPid() + " is not an attached client";
             LOGGER.w(msg);
             throw new SecurityException(msg);
         }
-
         if (!clientRecord.allowed) {
-            String msg = "Permission Denial: " + func + " from pid="
-                    + Binder.getCallingPid()
-                    + " requires permission";
+            String msg = "Permission Denial: " + func + " from pid=" + Binder.getCallingPid() + " requires permission";
             LOGGER.w(msg);
             throw new SecurityException(msg);
         }
@@ -134,21 +94,17 @@ public abstract class Service<
 
     public final void transactRemote(Parcel data, Parcel reply, int flags) throws RemoteException {
         enforceCallingPermission("transactRemote");
-
         IBinder targetBinder = data.readStrongBinder();
         int targetCode = data.readInt();
         int targetFlags;
-
         int callingUid = Binder.getCallingUid();
         int callingPid = Binder.getCallingPid();
         ClientRecord clientRecord = clientManager.findClient(callingUid, callingPid);
-
         if (clientRecord != null && clientRecord.apiVersion >= 13) {
             targetFlags = data.readInt();
         } else {
             targetFlags = flags;
         }
-
         LOGGER.d("transact: uid=%d, descriptor=%s, code=%d", Binder.getCallingUid(), targetBinder.getInterfaceDescriptor(), targetCode);
         Parcel newData = Parcel.obtain();
         try {
@@ -183,7 +139,6 @@ public abstract class Service<
 
     public final String getSELinuxContext() {
         enforceCallingPermission("getSELinuxContext");
-
         try {
             return SELinux.getContext();
         } catch (Throwable tr) {
@@ -193,7 +148,6 @@ public abstract class Service<
 
     public final String getSystemProperty(String name, String defaultValue) {
         enforceCallingPermission("getSystemProperty");
-
         try {
             return SystemProperties.get(name, defaultValue);
         } catch (Throwable tr) {
@@ -203,7 +157,6 @@ public abstract class Service<
 
     public final void setSystemProperty(String name, String value) {
         enforceCallingPermission("setSystemProperty");
-
         try {
             SystemProperties.set(name, value);
         } catch (Throwable tr) {
@@ -213,17 +166,14 @@ public abstract class Service<
 
     public final int removeUserService(IShizukuServiceConnection conn, Bundle options) {
         enforceCallingPermission("removeUserService");
-
         return userServiceManager.removeUserService(conn, options);
     }
 
     public final int addUserService(IShizukuServiceConnection conn, Bundle options) {
         enforceCallingPermission("addUserService");
-
         int callingUid = Binder.getCallingUid();
         int callingPid = Binder.getCallingPid();
         int callingApiVersion;
-
         ClientRecord clientRecord = clientManager.findClient(callingUid, callingPid);
         if (clientRecord == null) {
             callingApiVersion = ShizukuApiConstants.SERVER_VERSION;
@@ -240,11 +190,9 @@ public abstract class Service<
     public final boolean checkSelfPermission() {
         int callingUid = Binder.getCallingUid();
         int callingPid = Binder.getCallingPid();
-
         if (callingUid == OsUtils.getUid() || callingPid == OsUtils.getPid()) {
             return true;
         }
-
         return clientManager.requireClient(callingUid, callingPid).allowed;
     }
 
@@ -252,24 +200,19 @@ public abstract class Service<
         int callingUid = Binder.getCallingUid();
         int callingPid = Binder.getCallingPid();
         int userId = UserHandleCompat.getUserId(callingUid);
-
         if (callingUid == OsUtils.getUid() || callingPid == OsUtils.getPid()) {
             return;
         }
-
         ClientRecord clientRecord = clientManager.requireClient(callingUid, callingPid);
-
         if (clientRecord.allowed) {
             clientRecord.dispatchRequestPermissionResult(requestCode, true);
             return;
         }
-
         ConfigPackageEntry entry = configManager.find(callingUid);
         if (entry != null && entry.isDenied()) {
             clientRecord.dispatchRequestPermissionResult(requestCode, false);
             return;
         }
-
         showPermissionConfirmation(requestCode, clientRecord, callingUid, callingPid, userId);
     }
 
@@ -279,32 +222,25 @@ public abstract class Service<
     public final boolean shouldShowRequestPermissionRationale() {
         int callingUid = Binder.getCallingUid();
         int callingPid = Binder.getCallingPid();
-
         if (callingUid == OsUtils.getUid() || callingPid == OsUtils.getPid()) {
             return true;
         }
-
         clientManager.requireClient(callingUid, callingPid);
-
         ConfigPackageEntry entry = configManager.find(callingUid);
         return entry != null && entry.isDenied();
     }
 
     public final IRemoteProcess newProcess(String[] cmd, String[] env, String dir) {
         enforceCallingPermission("newProcess");
-
         LOGGER.d("newProcess: uid=%d, cmd=%s, env=%s, dir=%s", Binder.getCallingUid(), Arrays.toString(cmd), Arrays.toString(env), dir);
-
         java.lang.Process process;
         try {
             process = Runtime.getRuntime().exec(cmd, env, dir != null ? new File(dir) : null);
         } catch (IOException e) {
             throw new IllegalStateException(e.getMessage());
         }
-
         ClientRecord clientRecord = clientManager.findClient(Binder.getCallingUid(), Binder.getCallingPid());
         IBinder token = clientRecord != null ? clientRecord.client.asBinder() : null;
-
         return new RemoteProcessHolder(process, token);
     }
 
@@ -323,7 +259,6 @@ public abstract class Service<
             args.putInt(ShizukuApiConstants.ATTACH_APPLICATION_API_VERSION, -1);
             attachApplication(IShizukuApplication.Stub.asInterface(binder), args);
             reply.writeNoException();
-            return true;
             return true;
         }
         return true;

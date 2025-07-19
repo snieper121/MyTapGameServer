@@ -68,7 +68,7 @@ public class UserService {
                     Build.VERSION.SDK_INT >= Build.VERSION_CODES.N
                             ? UserHandleHidden.of(userId)
                             : new UserHandleHidden(userId));
-            Context context = Refine.<ContextHidden>unsafeCast(systemContext).createPackageContextAsUser(pkg, Context.CONTEXT_INCLUDE_CODE | Context.CONTEXT_IGNORE_SECURITY, userHandle);
+            Context context = Refine.<ContextHidden>unsafeCast(systemContext).createPackageContext(pkg, Context.CONTEXT_INCLUDE_CODE | Context.CONTEXT_IGNORE_SECURITY);
             Field mPackageInfo = context.getClass().getDeclaredField("mPackageInfo");
             mPackageInfo.setAccessible(true);
             Object loadedApk = mPackageInfo.get(context);

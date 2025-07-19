@@ -1,0 +1,70 @@
+
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    sourceSets {
+        main {
+            java.srcDirs = ["src/main/java"]
+            aidl.srcDirs = ["src/main/aidl"]
+        }
+    }
+    namespace 'com.example.mytapgameserver'
+    compileSdk 36
+
+    defaultConfig {
+        applicationId 'com.example.mytapgameserver'
+        ndkVersion "27.0.12077973"
+        minSdk 26
+        targetSdk 36
+        versionCode 1
+        versionName '1.0'
+
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+
+        // --- НАША НАСТРОЙКА ДЛЯ C/C++ ---
+        externalNativeBuild {
+            cmake {
+                arguments '-DANDROID_STL=c++_static'
+                // Указываем, какие цели из CMakeLists.txt мы хотим собрать
+                targets 'tap_starter', 'wifi_pairing'
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_21
+        targetCompatibility JavaVersion.VERSION_21
+    }
+    
+    // --- НАША НАСТРОЙКА ДЛЯ C/C++ ---
+    // Указываем Gradle, где найти нашу инструкцию по сборке
+    externalNativeBuild {
+        cmake {
+            path 'src/main/cpp/CMakeLists.txt'
+            version '4.0.2'
+        }
+    }
+}
+
+dependencies {
+    // Зависимости для скрытых API и сервера Rish
+    implementation 'androidx.core:core:1.9.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.10.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    // --- НАША ЗАВИСИМОСТЬ ДЛЯ ЗАПУСКА СЕРВЕРА ---
+    implementation('com.github.topjohnwu.libsu:core:5.2.2')
+}
+

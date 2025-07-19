@@ -1,0 +1,26 @@
+{
+  "name": "Android Native Build Environment",
+  "image": "mcr.microsoft.com/devcontainers/java:0-17",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "ms-vscode.cpptools-extension-pack",
+        "GitHub.copilot",
+        "GitHub.copilot-chat"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  },
+
+  "onCreateCommand": "sudo apt-get update && sudo apt-get install -y cmake wget unzip",
+
+  "postCreateCommand": "echo '' >> ~/.bashrc && echo '# Android SDK Settings' >> ~/.bashrc && echo 'export ANDROID_HOME=$HOME/android-sdk' >> ~/.bashrc && echo 'export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools' >> ~/.bashrc && if [ ! -d \"$HOME/android-sdk\" ]; then /bin/bash .devcontainer/install-sdk.sh; fi",
+
+  "forwardPorts": [],
+
+  "remoteUser": "vscode"
+}

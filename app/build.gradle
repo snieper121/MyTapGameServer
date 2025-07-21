@@ -41,7 +41,7 @@ android {
     }
     
     // Возвращаем современную версию NDK
-    ndkVersion "27.0.12077973"
+    ndkVersion "27.0.11902837"
 }
 
 dependencies {
